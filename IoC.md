@@ -1,0 +1,50 @@
+# IoC - Inversion of Control
+
+- Ust sevili siniflar alt sevili siniflari kullanirken onlari interfaceleri uzeriden kullanilirlar yani assagidaki yapidan bahsediyorum.
+> 
+` class CustomerManager{
+private ICustomer _customer;
+public CustomerManager(ICustomer  customer){
+    customer = customer;
+}} `
+
+ - biz bunlari kullanirken basit bir sekilde assagidaki gibi  new leyerek kullandik
+ 
+ ` CustomerManager customerManager = new CustomerManager(new EfCustomerDal()); `
+  
+ IoC konteyner bizim ihtiyac duydugumuz nesnenin ornegini tutuyor. yukaridaki ornege gore yani bizim icin efCustomerDal() in bir ornegini tutuyor.
+ Ayrica burda olusturulan instancenin yasam dongusunu tutuyor. ornek vermek gerekirse bir kere olusturulup gerimi verilecek yoksa her defasinda yeniden mi olusturulacak saatlikmi olusturacak gibi.
+
+- Inversion of Control araclarina bazi ornekler:
+     - Autofac,ninject,Castle Windsor,Structure Map,Light Inject, Dry Inject, Posts
+Biz kursta Autofac aracini kullaniyoruz. Ama diger araclari da biraz inceledim mantigini anladiktan sonra sadece kelimeler degisiyor.
+
+- Autofac ornegi
+    - ` builder.RegisterType<EfCustomerDal>().As<ICustomerDal>().SingleInstance(); `
+    - Bu kod bize eger bir yerde ICustomerDal varsa ona EfCustomerDal ornegini veriyor.
+    ` CustomerManager customerManager = new CustomerManager(ICustomerDal); ` -->  ICustomerDal  yerine EfCustomerDal ornegini (instance) veriyor.
+    
+    - #### Faydalari 
+    
+         - SingleInstance kismida bir tane ornek olusturmamazi sagliyor ICustomerDal isteyen herkese ayni refersansi veriyor. Bu sayede cok guzel bir bellek tasarrufu saglaniyor.
+         - Projenin bagimliligini merkezi bir noktadan yonetebiliyorsun. Nasil yani ? sen veya musteri artik veritabanda degisiklik yapmak istiyorsun. Hadi farkli  bir ORM kullanalim diyorsunuz.
+         - ORM -Entity Framework ORM(Object Relational Mapping) araçlarından biridir. ORM nedir dersek: İlişkisel veritabanı ile nesneye yönelik programlama(OOP) arasında bir köprü görevi gören araçtır. 
+          ORM le alakali daha detayli bir arastirma yapip onu da seriye ekleyecegim.
+         EfCustomerDal(entity framework) yerine XCustomerDal(x=hergangibir ORM olsun.)
+         - ` CustomerManager customerManager = new CustomerManager(EfCustomerDal); ` --> eger bu sekilde olusturursak ve hadi X ORM ine gecelim dersek... "new CustomerManager(EfCustomerDal);" yazdigimiz her yeri XCustomerDal diye duzeltmemiz gerekir.
+         - ` CustomerManager customerManager = new CustomerManager(XCustomerDal); ` --> her yeri bu sekilde yapmamiz gerekir
+         - ama ` CustomerManager customerManager = new CustomerManager(ICustomerDal); ` bu sekilde olusturursak sadece IoC Container yapisinda duzelmemiz gerekir.
+         - ` builder.RegisterType<EfCustomerDal>().As<ICustomerDal>().SingleInstance(); ` --> bunun yerine ==> ` builder.RegisterType<XCustomerDal>().As<ICustomerDal>().SingleInstance(); ` yazarsak sadece bir yerde yaptigimiz degisiklik sayesinde IoC Container ICustomerDal isteyen herkese artik XCustomerDal ornegi (instance) i verir.
+         - 
+          
+      - ## Ozetle
+            - Uygulamanin yasam dongusunu kontrol edebiliyoruz.
+            - Projenin bagimliligini merkezi bir noktadan yonetebiliyorsun.
+    
+
+
+Bu arada Visual Studio'nun kendi IoC'i alt yapisi bulunuyor ama Autofac bize bize Interceptors alt yapisi da sagliyor bu yuzden Autofac kullaniyoruz. Bunlari daha tam arastirmadim arastiricam bende engin hocanin yalancisiyim :)
+ 
+# Kaynaklar 
+-https://www.youtube.com/watch?v=o2cGqDVNzWg
+
