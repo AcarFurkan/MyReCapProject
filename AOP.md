@@ -53,18 +53,21 @@ Yazdigimiz kod 1 Hafta once sadece Allah benim aramdaydi suan sadece allah biliy
  - Derleme zamaninda gerceklesebilir (Compile-Time)
     - Performans acisindan hizlidir.
     - Type-safe olur.
-  
-  
-.Net AOP Spring.Net,PostSharp,Aspect#,Unity
-.NetFramework icersinde AOP yaklasimini uygulayabilecek siniflar, methodlar, ozellikler... vs. mevcut.. 
---ContextBoundObeject
-Attribute. springe
+    
+ - Yukarıdaki bilgilere ek olarak sağladığı faydalara tekrar değinecek olursak:
+
+    - Kod tekrarını önledik. Başka yerlerde kullanılacak modüler bir yapı elde ettik.
+    - Kod karmaşasını engelleyerek daha okunaklı kodlar elde ettik.
+    - Bakımı basitleştirdik.
+
 
 > ## Peki bu AOP yi, Aspect filan nasil kullanicaz
     - Yazilim gelistirme kapminda gelenlerler bilir bu aspectler attribute lar ile method veya classlarin uzerine asagida gibi yazilir.
 >> [ValidationAspect(typeof(CarValidator))]  
         public IResult Add(Car car){}
 - Bu modüllerin çalışması bir Interceptor sayesinde gerçekleşmektedir. 
+
+
 - Interceptor klasorunde detayli bilgiyi bulabilirsiniz.
 
 
