@@ -2,6 +2,8 @@
 
 *Oncelikle yazdiklarim asagida verilen kaynakca kisminda olan linklerden alinmis kopya ve ozetlerdir. Kendim icin sonradan hatirlamasi kolay olsun diye parcalardan aldigim onemli bilgileri paylasiyorum. Eger zamaniniz varsa direk kaynaklari incelemenizi tavsiye ederim.*
 
+- **IoC(Inversion Of Control),** uygulamanın yaşam döngüsü boyunca birbirine bağımlılığı az (loose coupling) olan nesneler oluşturmayı amaçlayan bir yazılım geliştirme prensibidir. Nesnelerin yaşam döngüsünden sorumludur, yönetimini sağlar. 
+
 - Ust sevili siniflar alt sevili siniflari kullanirken onlari interfaceleri uzeriden kullanilirlar yani assagidaki yapidan bahsediyorum.
 > 
 ` class CustomerManager{
@@ -14,7 +16,7 @@ public CustomerManager(ICustomer  customer){
  
  ` CustomerManager customerManager = new CustomerManager(new EfCustomerDal()); `
   
- IoC konteyner bizim ihtiyac duydugumuz nesnenin ornegini tutuyor. yukaridaki ornege gore yani bizim icin efCustomerDal() in bir ornegini tutuyor.
+ ***IoC Container***  bizim ihtiyac duydugumuz nesnenin ornegini(instance) tutuyor. Yukaridaki ornege gore yani bizim icin efCustomerDal() in bir ornegini tutuyor.
  Ayrica burda olusturulan instancenin yasam dongusunu tutuyor. ornek vermek gerekirse bir kere olusturulup gerimi verilecek yoksa her defasinda yeniden mi olusturulacak saatlikmi olusturacak gibi.
 
 - Inversion of Control araclarina bazi ornekler:
@@ -39,7 +41,7 @@ Biz kursta Autofac aracini kullaniyoruz. Ama diger araclari da biraz inceledim m
          - ` builder.RegisterType<EfCustomerDal>().As<ICustomerDal>().SingleInstance(); ` --> bunun yerine ==> ` builder.RegisterType<XCustomerDal>().As<ICustomerDal>().SingleInstance(); ` yazarsak sadece bir yerde yaptigimiz degisiklik sayesinde IoC Container ICustomerDal isteyen herkese artik XCustomerDal ornegi (instance) i verir.
         
       - ## Ozetle
-            - Uygulamanin yasam dongusunu kontrol edebiliyoruz.
+            - IoC sayisinde uygulamanin yasam dongusunu kontrol edebiliyoruz.
             - Projenin bagimliligini merkezi bir noktadan yonetebiliyorsun.
     
 
