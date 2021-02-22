@@ -12,6 +12,9 @@ Buna ek olarak bir de password kontrol için sayı ve harf içerip içermediğin
 *
 
 # AOP
-- <a href="https://github.com/AcarFurkan/MyReCapProject/blob/master/AOP.md"> AOP ÖZET </a>
+- <a href="https://github.com/AcarFurkan/MyReCapProject/blob/master/AOP.md"> AOP özet </a>
+#Interceptors
+- <a href="https://github.com/AcarFurkan/MyReCapProject/blob/master/Interceptors.md"> Interceptors özet </a>
+
 
 
