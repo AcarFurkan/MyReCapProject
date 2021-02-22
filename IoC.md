@@ -43,6 +43,7 @@ Biz kursta Autofac aracini kullaniyoruz. Ama diger araclari da biraz inceledim m
       - ## Ozetle
             - IoC sayisinde uygulamanin yasam dongusunu kontrol edebiliyoruz.
             - Projenin bagimliligini merkezi bir noktadan yonetebiliyorsun.
+            - Bağımlılıklar en aza indiği için test etmeyi/yazmayı kolaylaştırır.
     
 
 
@@ -51,4 +52,5 @@ Bu arada Visual Studio'nun kendi IoC'i alt yapisi bulunuyor ama Autofac bize biz
 # Kaynaklar 
 - https://www.youtube.com/watch?v=o2cGqDVNzWg
 - https://devnot.com/2020/ioc-prensibi-nedir-ornek-proje-ile-kullanimi-ve-avantajlari/
+- https://gokhana.medium.com/inversion-of-control-ioc-nedir-ve-avantajlar%C4%B1-nelerdir-cf05e42c16e4
 
