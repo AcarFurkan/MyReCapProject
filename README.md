@@ -1,5 +1,13 @@
 # MyReCapProject
 
 **Güncellemeler**
-*FluentValidator email kontrollu yaparken sadece '@' icerip icermedigini kontrol etmedigi icin Regexler yardimiyla kendi Validator sinifimi yazdim. 
-Buna ek olarak bir de password kontrol icin sayi ve harf icerip icermedigini ve en az 8 karakter olup olmadigini kontrol eden bir regex kullandim.*
+*FluentValidator email kontrollü yaparken sadece '@' içerip içermediğini kontrol etmediği için Regexler yardımıyla kendi Validator sınıfını yazdım. 
+Buna ek olarak bir de password kontrol için sayı ve harf içerip içermediğini ve en az 8 karakter olup olmadığını kontrol eden bir regex kullandım.
+*
+
+# MyReCapProject
+
+**Updates**
+*While FluentValidator was checking email, I wrote its own Validator class with the help of Regexes, since it does not only check whether it contains '@' or not. In addition to that, I also used a Regex to check if it contains at least one number and letter and at least 8 characters.
+*
+
