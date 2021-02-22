@@ -47,5 +47,5 @@ Biz kursta Autofac aracini kullaniyoruz. Ama diger araclari da biraz inceledim m
 Bu arada Visual Studio'nun kendi IoC'i alt yapisi bulunuyor ama Autofac bize bize Interceptors alt yapisi da sagliyor bu yuzden Autofac kullaniyoruz. Bunlari daha tam arastirmadim arastiricam bende engin hocanin yalancisiyim :)
  
 # Kaynaklar 
--https://www.youtube.com/watch?v=o2cGqDVNzWg
+- https://www.youtube.com/watch?v=o2cGqDVNzWg
 
