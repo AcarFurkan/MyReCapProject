@@ -1,5 +1,7 @@
 # IoC - Inversion of Control
 
+*Oncelikle yazdiklarim asagida verilen kaynakca kisminda olan linklerden alinmis kopya ve ozetlerdir. Kendim icin sonradan hatirlamasi kolay olsun diye parcalardan aldigim onemli bilgileri paylasiyorum. Eger zamaniniz varsa direk kaynaklari incelemenizi tavsiye ederim.*
+
 - Ust sevili siniflar alt sevili siniflari kullanirken onlari interfaceleri uzeriden kullanilirlar yani assagidaki yapidan bahsediyorum.
 > 
 ` class CustomerManager{
@@ -35,8 +37,7 @@ Biz kursta Autofac aracini kullaniyoruz. Ama diger araclari da biraz inceledim m
          - ` CustomerManager customerManager = new CustomerManager(XCustomerDal); ` --> her yeri bu sekilde yapmamiz gerekir
          - ama ` CustomerManager customerManager = new CustomerManager(ICustomerDal); ` bu sekilde olusturursak sadece IoC Container yapisinda duzelmemiz gerekir.
          - ` builder.RegisterType<EfCustomerDal>().As<ICustomerDal>().SingleInstance(); ` --> bunun yerine ==> ` builder.RegisterType<XCustomerDal>().As<ICustomerDal>().SingleInstance(); ` yazarsak sadece bir yerde yaptigimiz degisiklik sayesinde IoC Container ICustomerDal isteyen herkese artik XCustomerDal ornegi (instance) i verir.
-         - 
-          
+        
       - ## Ozetle
             - Uygulamanin yasam dongusunu kontrol edebiliyoruz.
             - Projenin bagimliligini merkezi bir noktadan yonetebiliyorsun.
