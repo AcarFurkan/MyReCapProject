@@ -1,5 +1,7 @@
 # Interceptors
 
+*Oncelikle yazdiklarim asagida verilen kaynakca kisminda olan linklerden alinmis kopya ve ozetlerdir. Kendim icin sonradan hatirlamasi kolay olsun diye parcalardan aldigim onemli bilgileri paylasiyorum. Eger zamaniniz varsa direk kaynaklari incelemenizi tavsiye ederim.*
+
 ## Interceptor Nedir, Nasıl Çalışır?
 - İş ihtiyaçlarına göre; metoda girmeden önce, işlem bittikten sonra, hata durumunda gibi durumlarda araya girerek istediğimiz müdahaleyi yapabilmemizi sağlar. Bu araya girme işlemleri Compile-Time (Derleme Zamanı) veya Run-Time (Çalışma Zamanı) olmak üzere iki farklı yönden gerçekleştirilebilir.
 
