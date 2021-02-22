@@ -70,5 +70,5 @@ Attribute. springe
 
 
 # Kaynaklar 
-- https://devnot.com/2020/aspect-oriented-programming/
-- https://www.gokhan-gokalp.com/aspect-oriented-programming-aop-giris-ve-ornek-bir-proje/
+- https://devnot.com/2020/aspect-oriented-programming/ - ilk olarak bunu okumanizi oneririm.
+- https://www.gokhan-gokalp.com/aspect-oriented-programming-aop-giris-ve-ornek-bir-proje/ --> aop,interceptor ve reflection yapilari kullanilmis guzel bir makale ve ornek iceriyor.
