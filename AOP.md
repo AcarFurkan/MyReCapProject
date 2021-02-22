@@ -1,7 +1,7 @@
 # Aspect Oriented Programming
 
 
-*Oncelikle yazdiklarim asagida verilen kaynakca kisminda olan linklerden alinmis kopya ve ozetlerdir. Kendim icin sonradan hatirlamasi kolay olsun diye parcalardan aldigim onemli bilgileri paylasiyorum. Eger zamaniniz varsa kaynaklari incelemenizi tavsiye ederim.*
+*Oncelikle yazdiklarim asagida verilen kaynakca kisminda olan linklerden alinmis kopya ve ozetlerdir. Kendim icin sonradan hatirlamasi kolay olsun diye parcalardan aldigim onemli bilgileri paylasiyorum. Eger zamaniniz direk varsa kaynaklari incelemenizi tavsiye ederim.*
 
 ## AOP
 
