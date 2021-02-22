@@ -17,5 +17,9 @@ Buna ek olarak bir de password kontrol için sayı ve harf içerip içermediğin
 # Interceptors
 - <a href="https://github.com/AcarFurkan/MyReCapProject/blob/master/Interceptors.md"> Interceptors özet </a>
 
+# IoC
+- <a href="https://github.com/AcarFurkan/MyReCapProject/blob/master/IoC.md"> IoC özet </a>
+
+
 
 
