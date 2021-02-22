@@ -50,4 +50,5 @@ Bu arada Visual Studio'nun kendi IoC'i alt yapisi bulunuyor ama Autofac bize biz
  
 # Kaynaklar 
 - https://www.youtube.com/watch?v=o2cGqDVNzWg
+- https://devnot.com/2020/ioc-prensibi-nedir-ornek-proje-ile-kullanimi-ve-avantajlari/
 
