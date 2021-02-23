@@ -14,7 +14,7 @@ Peki bu neden lazim ?
 
 - bu rasi biraz karisik gelmis olabilir ama kesinlikle degil. 14. ile 24. satir arasinda dependency injection kullanilarak attribute tan validoturun type aliniyor yani biz incelemeye 26. satirdan baslayacagiz ve bilmemiz gereken tek sey _validatorType valitorun type ni tasiyor.
 projeden ornek vermek gerekirse yani carValidator mi colorvalidator mi onun bilgisi _validatortype tutuyor.
-- 26. satirda reflection da activator denilen bir sinif var. ` Activator.CreateInstance(nesne) ` dedigi yerde bize neyin instance ni olusturmak istiyorsak onu veriyor. yani nesne yazan yere biz neyin type ni verirsek bize onun bir typenini olusturuyor. 
+- 26. satirda reflection da activator denilen bir sinif var. ` Activator.CreateInstance(nesne) ` dedigi yerde bize neyin instance ni olusturmak istiyorsak onu veriyor. yani nesne yazan yere biz neyin type ni verirsek bize onun bir ornegini(instanceni)olusturup veriyor. 
 (IValidator yazmamizin sebebi) ` Activator.CreateInstance(nesne) ` biz bir obje donduruyor. biz buna gelen typenin IValidator dan implementte edilen bir nesne oldugunu bildimiz icin ona cast islemi uyguluyoruz ve validator'a atiyoruz.  
 - Onemli olan nokta ***reflection*** sayesinde calisma aninda bir instance olusturup bunu 31. satirdaki ` ValidationTool.Validate(validator, entity); ` a verdik.
 
