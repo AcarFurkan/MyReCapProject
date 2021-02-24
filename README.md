@@ -17,8 +17,12 @@ Buna ek olarak bir de password kontrol için sayı ve harf içerip içermediğin
 # Interceptors
 - <a href="https://github.com/AcarFurkan/MyReCapProject/blob/master/Interceptors.md"> Interceptors özet </a>
 
+# Reflection ve Assembly
+- <a href=https://github.com/AcarFurkan/MyReCapProject/blob/master/Reflection.md> reflection ve assembly özet </a>
+
 # IoC
 - <a href="https://github.com/AcarFurkan/MyReCapProject/blob/master/IoC.md"> IoC özet </a>
+
 
 # Delegates
 - <a href="https://github.com/AcarFurkan/MyReCapProject/blob/master/Delegates.md"> Delegeler(func ve action iceren) özet </a>
