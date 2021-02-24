@@ -23,6 +23,10 @@ Buna ek olarak bir de password kontrol için sayı ve harf içerip içermediğin
 # Delegates
 - <a href="https://github.com/AcarFurkan/MyReCapProject/blob/master/Delegates.md"> Delegeler(func ve action iceren) özet </a>
 
+# Events
+- <a href="https://github.com/AcarFurkan/MyReCapProject/blob/master/Events.md"> Delegeler(func ve action iceren) özet </a>
+
+
 
 
 
