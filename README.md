@@ -20,6 +20,9 @@ Buna ek olarak bir de password kontrol için sayı ve harf içerip içermediğin
 # IoC
 - <a href="https://github.com/AcarFurkan/MyReCapProject/blob/master/IoC.md"> IoC özet </a>
 
+# Delegates
+- <a href="https://github.com/AcarFurkan/MyReCapProject/blob/master/Delegates.md"> Delegeler(func ve action iceren) özet </a>
+
 
 
 
