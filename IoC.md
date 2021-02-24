@@ -16,7 +16,7 @@ public CustomerManager(ICustomer  customer){
  
  ` CustomerManager customerManager = new CustomerManager(new EfCustomerDal()); `
   
- ***IoC Container***  bizim ihtiyac duydugumuz nesnenin ornegini(instance) tutuyor. Yukaridaki ornege gore yani bizim icin efCustomerDal() in bir ornegini tutuyor.
+ ***IoC Container***  bizim ihtiyac duydugumuz nesnenin ornegini(instance) uretiyor. Yukaridaki ornege gore yani bizim icin efCustomerDal() in bir ornegini uretip tutuyor.
  Ayrica burda olusturulan instancenin yasam dongusunu tutuyor. ornek vermek gerekirse bir kere olusturulup gerimi verilecek yoksa her defasinda yeniden mi olusturulacak saatlikmi olusturacak gibi.
 
 - Inversion of Control araclarina bazi ornekler:
