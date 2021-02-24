@@ -41,13 +41,13 @@ Biz kursta Autofac aracini kullaniyoruz. Ama diger araclari da biraz inceledim m
          - ` builder.RegisterType<EfCustomerDal>().As<ICustomerDal>().SingleInstance(); ` --> bunun yerine ==> ` builder.RegisterType<XCustomerDal>().As<ICustomerDal>().SingleInstance(); ` yazarsak sadece bir yerde yaptigimiz degisiklik sayesinde IoC Container ICustomerDal isteyen herkese artik XCustomerDal ornegi (instance) i verir.
         
       - ## Ozetle
-            - IoC sayisinde uygulamanin yasam dongusunu kontrol edebiliyoruz.
+            - IoC sayisinde olusturulan nesnein yasam dongusunu kontrol edebiliyoruz.
             - Projenin bagimliligini merkezi bir noktadan yonetebiliyorsun.
             - Bağımlılıklar en aza indiği için test etmeyi/yazmayı kolaylaştırır.
     
 
 
-Bu arada Visual Studio'nun kendi IoC'i alt yapisi bulunuyor ama Autofac bize bize Interceptors alt yapisi da sagliyor bu yuzden Autofac kullaniyoruz. Bunlari daha tam arastirmadim arastiricam bende engin hocanin yalancisiyim :)
+Bu arada Visual Studio'nun kendi IoC'i alt yapisi bulunuyor ama Autofac bize bize Interceptors yani AOP alt yapisi da sagliyor bu yuzden Autofac kullaniyoruz. 
  
 # Kaynaklar 
 - https://www.youtube.com/watch?v=o2cGqDVNzWg
