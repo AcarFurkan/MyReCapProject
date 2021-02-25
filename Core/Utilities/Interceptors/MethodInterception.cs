@@ -15,7 +15,7 @@ namespace Core.Utilities.Interceptors
             OnBefore(invocation);
             try
             {
-                invocation.Proceed();
+                invocation.Proceed();// bu arkadas Çağrıyı sıradaki bir sonraki 'interceptor' ve nihayetinde hedef methoda ilerletir.
             }
             catch (Exception e)
             {

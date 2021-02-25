@@ -14,6 +14,7 @@ namespace Business.Concrete
     public class UserManager : IUserService
     {
         IUserDal _userDal;
+        
 
         public UserManager(IUserDal userDal)
         {
@@ -23,6 +24,7 @@ namespace Business.Concrete
         [ValidationAspect(typeof(UserValidator))]
         public IResult Add(User user)
         {
+
             _userDal.Add(user);
             return new SuccessResult(Messages.UserAdded);
         }

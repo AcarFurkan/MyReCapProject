@@ -34,16 +34,24 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<UserManager>().As<IUserService>().SingleInstance();
             builder.RegisterType<EfUserDal>().As<IUserDal>().SingleInstance();
 
+            builder.RegisterType<ImageDetailManager>().As<IImageDetailService>().SingleInstance();
+            builder.RegisterType<EfImageDetailDal>().As<IImageDetailDal>().SingleInstance();
+
+            builder.RegisterType<CarImageManager>().As<ICarImageService>().SingleInstance();
+            builder.RegisterType<EfCarImageDal>().As<ICarImageDal>().SingleInstance();
+
+   
 
 
 
 
 
 
-            
 
 
-            var assembly = System.Reflection.Assembly.GetExecutingAssembly();//calisan uygulama icinde
+
+
+            var assembly = System.Reflection.Assembly.GetExecutingAssembly();//calisan uygulama icinde // suan da calisan assembly al demek yani .dll veya .exe dosyasi //Şu anda yürütülmekte olan kodu içeren derlemeyi alır.
 
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()// implemente edilmis interfacleri bul
                 .EnableInterfaceInterceptors(new ProxyGenerationOptions() 
@@ -54,3 +62,12 @@ namespace Business.DependencyResolvers.Autofac
         }
     }
 }
+
+//GetExecutingAssembly();--> bu calisan uygulamadiki assembly almamaizi sagliyor.
+//RegisterAssemblyTypes(assembly)-->bir assemblydeki tum turleri kaydetmize yariyor.
+//AsImplementedInterfaces()--> Taranan bir assemblydeki bir türün, uygulanan tüm interfacelerini sağlayacak şekilde kaydedildiğini belirtir.
+//EnableInterfaceInterceptors --> interceptor servislerinin bir listesinin kayda atanmasına izin verir.// yani yazdigimiz aspectleri bir listeliyo
+//.SingleInstance()--> bu bizim intercepterimizden bir instance uretiyo yani validatoraspecti gibi aspectleri calistiriyor.
+
+
+
