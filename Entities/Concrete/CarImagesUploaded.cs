@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Entities.Concrete
 {
-    public class CarImagesUploaded
+    public class CarImagesUploaded//bu arkadas toplu ekleme islemleri icin tekli eklerkende bunu kullaniyorum
     {
         public List<IFormFile> Images { get; set; }
         public int CarId { get; set; }

@@ -1,6 +1,7 @@
 ﻿using Core.Utilities.Result;
 using Entities.Concrete;
 using Entities.DTOs;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,10 +15,12 @@ namespace Business.Abstract
         IDataResult<CarImage> GetById(int Id);
         //IDataResult<List<CarImage>> GetAll();
         IDataResult<List<CarImage>> GetCarImagesByCarId(int Id);
-        IDataResult<CarTrial> GetCarImageDetailById(int id);
+        
         IResult Add(CarImagesUploaded carImagesUploaded);
         //IResult AddImages(CarImagesUploaded carImagesUploaded);
         IResult Update(CarImageUploadedApi carImageUploaded);
         IResult Delete(CarImageUploadedApi carImageUploaded);
+        IDataResult<FileStream> GetImageById(int id);
+        IDataResult<List<Stream>> GetImagesById(int id);
     }
 }

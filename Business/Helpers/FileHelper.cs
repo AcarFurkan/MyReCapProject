@@ -10,10 +10,18 @@ namespace Business.Helpers
 {
     public class FileHelper
     {
+        public static string defaultPath = @"C:\Users\furka\source\repos\MyReCapProject\WebAPI\Images\default.jpg";
         public static IDataResult<List<string>> Add(CarImagesUploaded carImagesUploaded)
         {
             //string path = @"C:\Users\furka\source\repos\MyReCapProject\WebAPI\Images\";
+
             List<string> tempPath = new List<string>();
+            if (carImagesUploaded.Images == null)//bu add image olmayan eklemeler icin
+            {
+                tempPath.Add(null);
+
+                return new SuccessDataResult<List<string>>(tempPath,"resimsiz sekilde olusturuldu");
+            }
             for (int i = 0; i < carImagesUploaded.Images.Count; i++)
             {
                 string guidKey = Guid.NewGuid().ToString("N");
