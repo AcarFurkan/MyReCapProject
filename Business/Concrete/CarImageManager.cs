@@ -1,9 +1,10 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.Helpers;
+using Core.Utilities.Business;
 using Core.Utilities.Result;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,56 +21,82 @@ namespace Business.Concrete
             _carImageDal = carImageDal;
         }
 
-
-        //[ValidationAspect(typeof(CarValidator))]  // 5 den fazla resim olamaz
-        public IResult Add(CarImage carImage)
+        public IResult Add(CarImageUploadedApi carImageUploaded)
         {
+            IResult result = BusinessRules.Run(CheckImageLimitExceeded(carImageUploaded.CarId));
+            if (result != null)
+            {
+                return result;
+            }
+
+            var filePath = FileHelper.Add(carImageUploaded);
+            if (!filePath.Success)//bussinesrulles methodunu olusturabilirsin 
+            {
+                return new ErrorResult(filePath.Message);
+            }
+            CarImage carImage = new CarImage {
+                CarId = carImageUploaded.CarId,
+                Date = DateTime.Now,
+                ImagePath = filePath.Data// 
+            };
             _carImageDal.Add(carImage);
-            return new SuccessResult();
+
+            return new SuccessResult("Ok");
         }
 
-        public IResult Delete(CarImage carImage)
+        public IResult Delete(CarImageUploadedApi carImageUploaded)
         {
-
+            var carImage = _carImageDal.GetById(c => c.CarImageId == carImageUploaded.CarImageId);// business kontrolunu ekle 
+            FileHelper.Delete(carImage.ImagePath);
+            //File.Delete(carImage.ImagePath); bunu burda yaparsam methoda parametre gonddermekten kurtulurum bujnu da bir dusun
             _carImageDal.Delete(carImage);
-            return new SuccessResult();
-
+            return new SuccessResult("Ok");
         }
-
-        
 
         public IDataResult<CarImage> GetById(int Id)
         {
-            var result = new SuccessDataResult<CarImage>(_carImageDal.GetById(c => c.CarId == Id));
-            return result;
+            var result = _carImageDal.GetById(c =>c.CarImageId == Id);
+            return new SuccessDataResult<CarImage>(result);
         }
 
-        public IDataResult<List<FileStream>> GetCarImageDetailById(int id)
+        public IDataResult<CarTrial> GetCarImageDetailById(int id)
         {
-            //var result = new SuccessDataResult<List<CarImageDto>>(_carImageDal.GetCarImageDetails(c => c.CarImageId == id));
-            var result = _carImageDal.GetCarImageDetails(c => c.CarImageId == id);
-            List<string> path = new List<string>(result.Count);
-            List<FileStream> formFile = new List<FileStream>(result.Count);
+            throw new NotImplementedException();
+        }
 
-            for (int i = 0; i < result.Count; i++)
+        public IDataResult<List<CarImage>> GetCarImagesByCarId(int Id)
+        {
+            var result = _carImageDal.GetAll(c=>c.CarId==Id);
+            return new SuccessDataResult<List<CarImage>>(result);
+        }
+
+        public IResult Update(CarImageUploadedApi carImageUploaded)
+        {
+            var carImage = _carImageDal.GetById(c => c.CarImageId == carImageUploaded.CarImageId);// business kontrolunu ekle 
+            //File.Delete(carImage.ImagePath); bunu burda yaparsam methoda parametre gonddermekten kurtulurum bujnu da bir dusun
+            var filePath = FileHelper.Update(carImageUploaded,carImage.ImagePath);
+            if (!filePath.Success)//bussinesrulles methodunu olustur
             {
-                path.Add(result[i].ImagePath);
-                formFile.Add( File.OpenRead(path[i]));
-               
+                return new ErrorResult(filePath.Message);
             }
            
+            carImage.Date = DateTime.Now;
+            carImage.ImagePath = filePath.Data;
+            _carImageDal.Update(carImage);
 
-           
-            return new SuccessDataResult<List<FileStream>>(formFile);
-
+            return new SuccessResult("Ok");
         }
 
-        // [ValidationAspect(typeof(CarValidator))]
-        public IResult Update(CarImage carImage)
+        //bu tek tek yukleme icin kullan dosumde cok lu icin bu ise yaramaz kontrol etmeyi unutma
+        private IResult CheckImageLimitExceeded(int carid)
         {
-            _carImageDal.Update(carImage);
-            return new SuccessResult();
+            var carImagecount = _carImageDal.GetAll(p => p.CarId == carid).Count;
+            if (carImagecount >= 5)
+            {
+                return new ErrorResult("5 den fazla resim eklenemez");// messagesea ekle
+            }
 
+            return new SuccessResult();
         }
     }
 }

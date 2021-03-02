@@ -6,15 +6,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
+
 namespace Business.Abstract
 {
     public interface ICarImageService
     {
         IDataResult<CarImage> GetById(int Id);
         //IDataResult<List<CarImage>> GetAll();
-        IDataResult<List<FileStream>> GetCarImageDetailById(int id);
-        IResult Add(CarImage carImage);
-        IResult Update(CarImage carImage);
-        IResult Delete(CarImage carImage);
+        IDataResult<List<CarImage>> GetCarImagesByCarId(int Id);
+        IDataResult<CarTrial> GetCarImageDetailById(int id);
+        IResult Add(CarImageUploadedApi carImageUploaded);
+        IResult Update(CarImageUploadedApi carImageUploaded);
+        IResult Delete(CarImageUploadedApi carImageUploaded);
     }
 }

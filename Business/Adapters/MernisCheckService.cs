@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Business.Adapters
 {
-    public class MernisCheckService : IPersonCheckService
+    public class MernisCheckService //: IPersonCheckService
     {
         public bool CheckIfRealPerson(User user)
         {
