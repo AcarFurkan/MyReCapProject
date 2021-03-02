@@ -20,29 +20,38 @@ namespace Business.Concrete
         {
             _carImageDal = carImageDal;
         }
-
-        public IResult Add(CarImageUploadedApi carImageUploaded)
+        
+        public IResult Add(CarImagesUploaded carImagesUploaded)
         {
-            IResult result = BusinessRules.Run(CheckImageLimitExceeded(carImageUploaded.CarId));
+            IResult result = BusinessRules.Run(CheckImagesLimitExceeded(carImagesUploaded.CarId,
+                carImagesUploaded.Images.Count));
             if (result != null)
             {
                 return result;
             }
 
-            var filePath = FileHelper.Add(carImageUploaded);
+            var filePath = FileHelper.Add(carImagesUploaded);
             if (!filePath.Success)//bussinesrulles methodunu olusturabilirsin 
             {
                 return new ErrorResult(filePath.Message);
             }
-            CarImage carImage = new CarImage {
-                CarId = carImageUploaded.CarId,
-                Date = DateTime.Now,
-                ImagePath = filePath.Data// 
-            };
-            _carImageDal.Add(carImage);
+
+            for (int i = 0; i < filePath.Data.Count; i++)
+            {
+                CarImage carImage = new CarImage
+                {
+                    CarId = carImagesUploaded.CarId,
+                    Date = DateTime.Now,
+                    ImagePath = filePath.Data[i]
+                };
+                _carImageDal.Add(carImage);
+            }
+
+
 
             return new SuccessResult("Ok");
         }
+
 
         public IResult Delete(CarImageUploadedApi carImageUploaded)
         {
@@ -86,12 +95,12 @@ namespace Business.Concrete
 
             return new SuccessResult("Ok");
         }
-
-        //bu tek tek yukleme icin kullan dosumde cok lu icin bu ise yaramaz kontrol etmeyi unutma
-        private IResult CheckImageLimitExceeded(int carid)
+        
+        private IResult CheckImagesLimitExceeded(int carid, int numberOfIncomingImages)
         {
             var carImagecount = _carImageDal.GetAll(p => p.CarId == carid).Count;
-            if (carImagecount >= 5)
+            carImagecount += numberOfIncomingImages;
+            if (carImagecount > 5)
             {
                 return new ErrorResult("5 den fazla resim eklenemez");// messagesea ekle
             }
@@ -100,3 +109,28 @@ namespace Business.Concrete
         }
     }
 }
+
+//// YENIISINII YAZDIIM 
+/*
+        public IResult Add(CarImageUploadedApi carImageUploaded)
+        {
+            IResult result = BusinessRules.Run(CheckImageLimitExceeded(carImageUploaded.CarId));
+            if (result != null)
+            {
+                return result;
+            }
+
+            var filePath = FileHelper.Add(carImageUploaded);
+            if (!filePath.Success)//bussinesrulles methodunu olusturabilirsin 
+            {
+                return new ErrorResult(filePath.Message);
+            }
+            CarImage carImage = new CarImage {
+                CarId = carImageUploaded.CarId,
+                Date = DateTime.Now,
+                ImagePath = filePath.Data// 
+            };
+            _carImageDal.Add(carImage);
+
+            return new SuccessResult("Ok");
+        }*/

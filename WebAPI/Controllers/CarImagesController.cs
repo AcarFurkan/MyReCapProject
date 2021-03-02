@@ -20,7 +20,20 @@ namespace WebAPI.Controllers
         {
             _carImageService = carImageService;
         }
+        [HttpPost("add")]
+        public IActionResult Add([FromForm] CarImagesUploaded carImagesUploaded)// fromBODY VE DIGERLERI NE ISE YARIYOR ONLARA BAK.
+        {// [FromForm(Name = "Image")] IFormFile file, [FromForm] CarImage carImage bu sekilde yazmadim ki bu sayede bir yerde kontrol edebiliyorum.
 
+            var result = _carImageService.Add(carImagesUploaded);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        /*// GUNCELIDI YAZDIM
         [HttpPost("add")]
         public IActionResult Add([FromForm] CarImageUploadedApi carImageUploaded)// fromBODY VE DIGERLERI NE ISE YARIYOR ONLARA BAK.
         {// [FromForm(Name = "Image")] IFormFile file, [FromForm] CarImage carImage bu sekilde yazmadim ki bu sayede bir yerde kontrol edebiliyorum.
@@ -32,7 +45,7 @@ namespace WebAPI.Controllers
                 return Ok(result);
             }
             return BadRequest(result);
-        }
+        }*/
 
         [HttpPost("update")]
         public IActionResult Update([FromForm] CarImageUploadedApi carImageUploaded)// fromBODY VE DIGERLERI NE ISE YARIYOR ONLARA BAK.
@@ -80,6 +93,21 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
+        //----------------------------------------------------------------------------
+
+        [HttpGet("getimage")]
+        public IActionResult GetImage(int id)
+        {
+            var result = _carImageService.GetById(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+       
 
 
     }

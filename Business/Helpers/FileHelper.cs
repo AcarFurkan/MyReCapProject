@@ -10,24 +10,31 @@ namespace Business.Helpers
 {
     public class FileHelper
     {
-        
-
-        public static IDataResult<string> Add(CarImageUploadedApi carImageUploaded) 
+        public static IDataResult<List<string>> Add(CarImagesUploaded carImagesUploaded)
         {
             //string path = @"C:\Users\furka\source\repos\MyReCapProject\WebAPI\Images\";
-            string guidKey = Guid.NewGuid().ToString("N");
-            string path = @"C:\Users\furka\source\repos\MyReCapProject\WebAPI\Images\";
-            var fileExists = CheckFileExists(carImageUploaded.Images);
-            if (fileExists.Message != null)
+            List<string> tempPath = new List<string>();
+            for (int i = 0; i < carImagesUploaded.Images.Count; i++)
             {
-                return new ErrorDataResult<string>(fileExists.Message);
+                string guidKey = Guid.NewGuid().ToString("N");
+                string path = @"C:\Users\furka\source\repos\MyReCapProject\WebAPI\Images\";
+                /*var fileExists = CheckFileExists(carImagesUploaded.Images[i]);
+                if (fileExists.Message != null)
+                {
+                    return new ErrorDataResult<string>(fileExists.Message);
+                }*/
+
+                CreateDirectory(path);
+                path += guidKey;
+                path = CreateImageFile(path, carImagesUploaded.Images[i]);
+                tempPath.Add(path);
             }
-            
-            CreateDirectory(path);
-            path += guidKey;
-            path = CreateImageFile(path, carImageUploaded.Images);
-            return new SuccessDataResult<string>(path,"file added!!"); // messagese a file added i eklemeyi unutma
-            
+            if (tempPath.Count == 1)
+            {
+                return new SuccessDataResult<List<string>>(tempPath, "file added");
+            }
+            return new SuccessDataResult<List<string>>(tempPath, "files added");
+
         }
         public static IDataResult<string> Update(CarImageUploadedApi carImageUploaded,string sourcePath)//helperi core katmanindan kaldirirsan iki parametre problemini cozersin
         {
@@ -96,6 +103,30 @@ namespace Business.Helpers
             }
             return new SuccessResult();
         }
+
+       
+
+
+        /// YENISIINI YAZDIM
+        /*
+        public static IDataResult<string> Add(CarImageUploadedApi carImageUploaded) 
+        {
+            //string path = @"C:\Users\furka\source\repos\MyReCapProject\WebAPI\Images\";
+            string guidKey = Guid.NewGuid().ToString("N");
+            string path = @"C:\Users\furka\source\repos\MyReCapProject\WebAPI\Images\";
+            var fileExists = CheckFileExists(carImageUploaded.Images);
+            if (fileExists.Message != null)
+            {
+                return new ErrorDataResult<string>(fileExists.Message);
+            }
+            
+            CreateDirectory(path);
+            path += guidKey;
+            path = CreateImageFile(path, carImageUploaded.Images);
+            return new SuccessDataResult<string>(path,"file added!!"); // messagese a file added i eklemeyi unutma
+            
+        }*/
+
 
 
     }
