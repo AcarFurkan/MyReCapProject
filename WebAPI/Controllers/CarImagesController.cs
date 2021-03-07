@@ -21,8 +21,8 @@ namespace WebAPI.Controllers
             _carImageService = carImageService;
         }
         [HttpPost("add")]
-        public IActionResult Add([FromForm] CarImagesUploaded carImagesUploaded)// fromBODY VE DIGERLERI NE ISE YARIYOR ONLARA BAK.
-        {// [FromForm(Name = "Image")] IFormFile file, [FromForm] CarImage carImage bu sekilde yazmadim ki bu sayede bir yerde kontrol edebiliyorum.
+        public IActionResult Add([FromForm] CarImagesUploadedForCarImageFormFileListDto carImagesUploaded)
+        {
 
             var result = _carImageService.Add(carImagesUploaded);
 
@@ -34,8 +34,8 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update([FromForm] CarImageUploadedApi carImageUploaded)// fromBODY VE DIGERLERI NE ISE YARIYOR ONLARA BAK.
-        {// [FromForm(Name = "Image")] IFormFile file, [FromForm] CarImage carImage bu sekilde yazmadim ki bu sayede bir yerde kontrol edebiliyorum.
+        public IActionResult Update([FromForm] CarImageUploadedForSingleFormFileDto carImageUploaded)
+        {
 
             var result = _carImageService.Update(carImageUploaded);
 
@@ -47,8 +47,8 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete([FromForm] CarImageUploadedApi carImageUploaded)// fromBODY VE DIGERLERI NE ISE YARIYOR ONLARA BAK.
-        {// [FromForm(Name = "Image")] IFormFile file, [FromForm] CarImage carImage bu sekilde yazmadim ki bu sayede bir yerde kontrol edebiliyorum.
+        public IActionResult Delete([FromForm] CarImageUploadedForSingleFormFileDto carImageUploaded)
+        {
 
             var result = _carImageService.Delete(carImageUploaded);
 
@@ -109,17 +109,3 @@ namespace WebAPI.Controllers
 
     }
 }
-
-/*// GUNCELIDI YAZDIM
-[HttpPost("add")]
-public IActionResult Add([FromForm] CarImageUploadedApi carImageUploaded)// fromBODY VE DIGERLERI NE ISE YARIYOR ONLARA BAK.
-{// [FromForm(Name = "Image")] IFormFile file, [FromForm] CarImage carImage bu sekilde yazmadim ki bu sayede bir yerde kontrol edebiliyorum.
-
-    var result = _carImageService.Add(carImageUploaded);
-
-    if (result.Success)
-    {
-        return Ok(result);
-    }
-    return BadRequest(result);
-}*/

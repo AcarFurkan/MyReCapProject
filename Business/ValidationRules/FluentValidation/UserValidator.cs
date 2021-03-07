@@ -1,4 +1,5 @@
-﻿using Core.Utilities.MyValidators;
+﻿using Core.Entities.Concrete;
+using Core.Utilities.MyValidators;
 using Entities.Concrete;
 using FluentValidation;
 using System;
@@ -16,7 +17,7 @@ namespace Business.ValidationRules.FluentValidation
             RuleFor(u => u.Email).Must(MyValidators.EmailControl).WithMessage("Lutfen gecerli bir email adresi giriniz.");//bunu mesajlara aktar.
             RuleFor(u => u.FirstName).MinimumLength(2);
             RuleFor(u => u.LastName).MinimumLength(2);
-            RuleFor(u => u.Password).Must(MyValidators.PasswordControl).WithMessage("en az bir rakam ve en az bir harf icermelidir ve en az 8 karakter olmadir. ");//bunu mesajlara aktar.
+            //RuleFor(u => u.pas).Must(MyValidators.PasswordControl).WithMessage("en az bir rakam ve en az bir harf icermelidir ve en az 8 karakter olmadir. ");//bunu mesajlara aktar.
 
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Business.Constants
@@ -18,8 +19,6 @@ namespace Business.Constants
         public static string CarsListed = " Cars Listed";
         public static string GeneralError = " General error";
         public static string RentalDeleted = " rental deleted";
-
-
-
+        public static string AuthorizationDenied = " yetkiniz yok.";
     }
 }

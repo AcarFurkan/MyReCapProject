@@ -11,27 +11,21 @@ namespace Business.Helpers
     public class FileHelper
     {
         public static string defaultPath = @"C:\Users\furka\source\repos\MyReCapProject\WebAPI\Images\default.jpg";
-        public static IDataResult<List<string>> Add(CarImagesUploaded carImagesUploaded)
+        public static IDataResult<List<string>> Add(CarImagesUploadedForCarImageFormFileListDto carImagesUploaded)
         {
             //string path = @"C:\Users\furka\source\repos\MyReCapProject\WebAPI\Images\";
 
             List<string> tempPath = new List<string>();
-            if (carImagesUploaded.Images == null)//bu add image olmayan eklemeler icin
+            int uploadedImageCount = carImagesUploaded.Images == null ? 0 : carImagesUploaded.Images.Count;
+            if (uploadedImageCount == 0)//bu default imageleri ekleme islemi icin dosya olusturmuyoruz sadece null bir yol donduruyoruz 
             {
                 tempPath.Add(null);
-
                 return new SuccessDataResult<List<string>>(tempPath,"resimsiz sekilde olusturuldu");
             }
             for (int i = 0; i < carImagesUploaded.Images.Count; i++)
             {
                 string guidKey = Guid.NewGuid().ToString("N");
                 string path = @"C:\Users\furka\source\repos\MyReCapProject\WebAPI\Images\";
-                /*var fileExists = CheckFileExists(carImagesUploaded.Images[i]);
-                if (fileExists.Message != null)
-                {
-                    return new ErrorDataResult<string>(fileExists.Message);
-                }*/
-
                 CreateDirectory(path);
                 path += guidKey;
                 path = CreateImageFile(path, carImagesUploaded.Images[i]);
@@ -42,12 +36,10 @@ namespace Business.Helpers
                 return new SuccessDataResult<List<string>>(tempPath, "file added");
             }
             return new SuccessDataResult<List<string>>(tempPath, "files added");
-
         }
-        public static IDataResult<string> Update(CarImageUploadedApi carImageUploaded,string sourcePath)//helperi core katmanindan kaldirirsan iki parametre problemini cozersin
+        public static IDataResult<string> Update(CarImageUploadedForSingleFormFileDto carImageUploaded,string sourcePath)//helperi core katmanindan kaldirirsan iki parametre problemini cozersin
         {
-            // araba id kontroluude yapmak lazimm ama o business da yapmallisin
-            
+          
             string guidKey = Guid.NewGuid().ToString("N");
             string path = @"C:\Users\furka\source\repos\MyReCapProject\WebAPI\Images\";
             var fileExists = CheckFileExists(carImageUploaded.Images);
@@ -66,7 +58,7 @@ namespace Business.Helpers
         public static IResult Delete(string sourcePath)//helperi core katmanindan kaldirirsan iki parametre problemini cozersin
         {
             File.Delete(sourcePath);
-            return new SuccessResult("file updated!!");
+            return new SuccessResult("file deleted!!");
 
         }
 

@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using ServiceStack.Text;
 using System;
 using Microsoft.Extensions.DependencyInjection;
+using Core.Entities.Concrete;
 
 namespace ConsoleUI
 {
@@ -41,14 +42,14 @@ namespace ConsoleUI
 
 
             var svc = ActivatorUtilities.GetServiceOrCreateInstance<IUserService>(host.Services);
-            var user1 = svc.Add(new User()
+            /*var user1 = svc.Add(new User()
             {
                 FirstName = "furkan",
                 LastName = "acar",
                 Email = "fafafgma@kk.asd",
                 Password = "asdffh4jkghjk"
-            });
-            Console.WriteLine(user1.Message);
+            });*/
+          //  Console.WriteLine(user1.Message);
 
            
 

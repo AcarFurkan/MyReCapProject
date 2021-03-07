@@ -16,10 +16,10 @@ namespace Business.Abstract
         //IDataResult<List<CarImage>> GetAll();
         IDataResult<List<CarImage>> GetCarImagesByCarId(int Id);
         
-        IResult Add(CarImagesUploaded carImagesUploaded);
+        IResult Add(CarImagesUploadedForCarImageFormFileListDto carImagesUploaded);
         //IResult AddImages(CarImagesUploaded carImagesUploaded);
-        IResult Update(CarImageUploadedApi carImageUploaded);
-        IResult Delete(CarImageUploadedApi carImageUploaded);
+        IResult Update(CarImageUploadedForSingleFormFileDto carImageUploaded);
+        IResult Delete(CarImageUploadedForSingleFormFileDto carImageUploaded);
         IDataResult<FileStream> GetImageById(int id);
         IDataResult<List<Stream>> GetImagesById(int id);
     }

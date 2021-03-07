@@ -12,6 +12,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Transaction;
+using Core.Aspects.Autofac.Performence;
 
 namespace Business.Concrete
 {
@@ -24,12 +27,25 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
+        [CacheRemoveAspect("ICarService.Get")]
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
 
             _carDal.Add(car);
             return new SuccessResult(Messages.CarAdded);
+        }
+
+        [TransactionScopeAspect]
+        public IResult AddTransactionalTest(Car car)
+        {
+            Add(car);
+            if (car.DailyPrice<200)
+            {
+                throw new Exception("");
+            }
+            Add(car);
+            return null;
         }
 
         public IResult Delete(Car car)
@@ -44,15 +60,13 @@ namespace Business.Concrete
             
         }
 
+        [CacheAspect]
+        [PerformanceAspect(5)]
         public IDataResult<List<Car>> GetAll()
         {
             //_carDal.GetAll()
 
-            if (DateTime.Now.Hour == 20)
-            {
-                return new ErrorDataResult<List<Car>>(Messages.CarNameInvalid);
-            }
-
+            
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.CarsListed);
         }
 
@@ -97,6 +111,7 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(CarValidator))]
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Update(Car car)
         {
            
